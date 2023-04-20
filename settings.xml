@@ -5,32 +5,32 @@
 
   <servers>
     <server>
-      <id>${SNAP-REPO}</id>
-      <username>${NEXUS-USER}</username>
-      <password>${NEXUS-PASS}</password>
+      <id>${SNAPREPO}</id>
+      <username>${NEXUSUSER}</username>
+      <password>${NEXUSPASSWORD}</password>
     </server>
     <server>
-      <id>${RELEASE-REPO}</id>
-      <username>${NEXUS-USER}</username>
-      <password>${NEXUS-PASS}</password>
+      <id>${releaserepo}</id>
+      <username>${NEXUSUSER}</username>
+      <password>${NEXUSPASSWORD}</password>
     </server>
         <server>
-        <id>${CENTRAL-REPO}</id>
-      <username>${NEXUS-USER}</username>
-      <password>${NEXUS-PASS}</password>
+        <id>${centralrepo}</id>
+      <username>${NEXUSUSER}</username>
+      <password>${NEXUSPASSWORD}</password>
     </server>
     <server>
-        <id>${NEXUS-GRP-REPO}</id>
-      <username>${NEXUS-USER}</username>
-      <password>${NEXUS-PASS}</password>
+        <id>${nexusgrouprepo}</id>
+      <username>${NEXUSUSER}</username>
+      <password>${NEXUSPASSWORD}</password>
     </server>
   </servers>
 
   <mirrors>
     <mirror>
-      <id>${CENTRAL-REPO}</id>
-      <name>${CENTRAL-REPO}</name>
-      <url>http://${NEXUSIP}:${NEXUSPORT}/repository/${NEXUS-GRP-REPO}/</url>
+      <id>${centralrepo}</id>
+      <name>${centralrepo}</name>
+      <url>http://${nexusip}:${nexusport}/repository/${nexusgrouprepo}/</url>
       <mirrorOf>*</mirrorOf>
     </mirror>
   </mirrors>
