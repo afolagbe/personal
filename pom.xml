@@ -164,7 +164,7 @@
 	<repositories>
     <repository>
       <id>${nexusgrouprepo}</id>
-      <url>http://${nexusip}:${nexusport}/repository/${nexusgrouprepo}/</url>
+      <url>http://${nexusip}:${nexusport}/repository/${nexusgroup}/</url>
     </repository>
   </repositories>
 </project>

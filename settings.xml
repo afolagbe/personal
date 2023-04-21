@@ -6,23 +6,23 @@
   <servers>
     <server>
       <id>${SNAPREPO}</id>
-      <username>${NEXUSUSER}</username>
-      <password>${NEXUSPASSWORD}</password>
+      <username>${nexususer}</username>
+      <password>${nexuspassword}</password>
     </server>
     <server>
       <id>${releaserepo}</id>
-      <username>${NEXUSUSER}</username>
-      <password>${NEXUSPASSWORD}</password>
+      <username>${nexususer}</username>
+      <password>${nexuspassword}</password>
     </server>
         <server>
         <id>${centralrepo}</id>
-      <username>${NEXUSUSER}</username>
-      <password>${NEXUSPASSWORD}</password>
+      <username>${nexususer}</username>
+      <password>${nexuspassword}</password>
     </server>
     <server>
-        <id>${nexusgrouprepo}</id>
-      <username>${NEXUSUSER}</username>
-      <password>${NEXUSPASSWORD}</password>
+        <id>${nexusgroup}</id>
+      <username>${nexususer}</username>
+      <password>${nexuspassword}</password>
     </server>
   </servers>
 
@@ -30,7 +30,7 @@
     <mirror>
       <id>${centralrepo}</id>
       <name>${centralrepo}</name>
-      <url>http://${nexusip}:${nexusport}/repository/${nexusgrouprepo}/</url>
+      <url>http://${nexusip}:${nexusport}/repository/${nexusgroup}/</url>
       <mirrorOf>*</mirrorOf>
     </mirror>
   </mirrors>
