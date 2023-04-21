@@ -1,19 +1,19 @@
 pipeline{
     agent any
     tools{
-        jdk 'JDK'
         maven 'Maven'
+        jdk 'JDK'
     }
     environment{
         SNAPREPO = 'vpro-snapshot'
-        RELEASEREPO = 'vpro-release'
-        centralrepo = 'vpro-maven-central'
         nexusgroup = 'vpro-maven-group'
         nexususer = 'admin'
         nexuspassword = 'admin'
+        centralrepo = 'vpro-maven-central'
         nexusip = '172.31.0.191'
         nexusport = '8081'
         nexuslogin = 'nexuslogin'
+        releaserepo = 'vpro-release'
     }
     stages{
         stage('BUILD'){
