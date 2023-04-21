@@ -23,7 +23,7 @@ pipeline{
             post {
               success {
                     echo 'Now archiving'
-                    archiveArtifacts:'**/*.war'
+            archiveArtifacts artifacts: '**/*.war', followSymlinks: false
                 }
             }
         }
