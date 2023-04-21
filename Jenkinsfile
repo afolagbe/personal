@@ -20,6 +20,17 @@ pipeline{
             steps{
                 sh 'mvn -s settings.xml install -DskipTests'
             }
+            post{
+                SUCCESS{
+                    echo 'Now archiving'
+                    archiveArtifacts:'**/*.war'
+                }
+            }
+        }
+        stage('TEST'){
+            steps{
+                sh 'mvn -s settings.xml test'
+            }
         }
     }
 }
