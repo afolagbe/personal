@@ -39,13 +39,12 @@ pipeline{
                 sh 'mvn -s settings.xml checkstyle:checkstyle'
             }
         }
-                }
-        stage ('SONAR ANALYSIS') {
+                stage ('SONAR ANALYSIS') {
             environment {
-                scannerHome = tool "${SONAR_SCANNER}"
+                scannerHome = tool "${ SONAR_SCANNER}"
             }
             steps {
-                withSonarQubeEnv("${SONARSERVER}") {
+                withSonarQubeEnv("${SONAR_SERVER}") {
                sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
                    -Dsonar.projectName=vprofile \
                    -Dsonar.projectVersion=1.0 \
@@ -54,7 +53,6 @@ pipeline{
                    -Dsonar.junit.reportsPath=target/surefire-reports/ \
                    -Dsonar.jacoco.reportsPath=target/jacoco.exec \
                    -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
-            }
             }
         }
     }
