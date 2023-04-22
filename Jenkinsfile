@@ -26,6 +26,5 @@ pipeline{
             steps{
                 sh 'mvn -s settings.xml test'
             }
-        }
-    }
+         }
 }
