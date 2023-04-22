@@ -5,17 +5,17 @@ pipeline{
         maven 'Maven'
     }
     environment{
-        SNAPREPO = 'vpro-snapshts'
-        NEXUSUSER = 'admin'
-        nexuspassword = 'admin'
-        releaserepo = 'vpro-release'
-        centralrepo = 'vpro-maven-central'
-        nexusip = '172.31.10.98'
-        nexusport = '8081'
-        nexusgroup = 'vpro-maven-group'
-        nexuslogin = 'nexuslogin'
+    SNAPREPO = 'vpro-snapshots'
+    NEXUSUSER = 'admin'
+    nexuspassword = 'admin'
+    releaserepo = 'vpro-release'
+    centralrepo = 'vpro-mavan-central'
+    nexusip = '172.31.10.98'
+    nexusport = '8081'
+    nexusgroup = 'vpro-maven-group'
+    nexuslogin = 'nexuslogin'
     }
-    stage{
+    stages{
         stage('BUILD'){
             steps{
                 sh 'mvn -s settings.xml install -DskipTests'
