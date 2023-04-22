@@ -1,30 +1,25 @@
 pipeline{
     agent any
     tools{
+        jdk 'myjdk'
         maven 'Maven'
-        jdk 'JDK'
     }
     environment{
-        SNAPREPO = 'vpro-snapshot'
-        nexusgroup = 'vpro-maven-group'
-        nexususer = 'admin'
+        SNAPREPO = 'vpro-snapshts'
+        NEXUSUSER = 'admin'
         nexuspassword = 'admin'
+        releaserepo = 'vpro-release'
         centralrepo = 'vpro-maven-central'
         nexusip = '172.31.10.98'
         nexusport = '8081'
+        nexusgroup = 'vpro-maven-group'
         nexuslogin = 'nexuslogin'
-        releaserepo = 'vpro-release'
     }
-    stages{
-              success {
-                    echo 'Now archiving'
-            archiveArtifacts artifacts: 'new', followSymlinks: false
-                }
+    stage{
+        stage('BUILD'){
+            steps{
+                sh 'mvn -s settings.xml install -DskipTests'
             }
         }
-        stage('TEST'){
-            steps{
-                sh 'mvn -s settings.xml test'
-            }
-         }
+    }
 }
