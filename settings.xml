@@ -6,22 +6,22 @@
   <servers>
     <server>
       <id>${SNAPREPO}</id>
-      <username>${nexususer}</username>
+      <username>${NEXUSUSER}</username>
       <password>${nexuspassword}</password>
     </server>
     <server>
       <id>${releaserepo}</id>
-      <username>${nexususer}</username>
+      <username>${NEXUSUSER}</username>
       <password>${nexuspassword}</password>
     </server>
         <server>
         <id>${centralrepo}</id>
-      <username>${nexususer}</username>
+      <username>${NEXUSUSER}</username>
       <password>${nexuspassword}</password>
     </server>
     <server>
         <id>${nexusgroup}</id>
-      <username>${nexususer}</username>
+      <username>${NEXUSUSER}</username>
       <password>${nexuspassword}</password>
     </server>
   </servers>
