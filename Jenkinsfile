@@ -14,6 +14,8 @@ pipeline{
         nexuslogin = 'nuxuslogin'
         nexuspassword = 'admin'
         SNAPREPO = 'vpro-snapshot'
+        SONAR_SERVER = 'Sonarserver'
+        SONAR_SCANNER = 'Sonarscanner'
     }
     stages{
         stage('BUILD'){
@@ -30,6 +32,11 @@ pipeline{
         stage('TEST'){
             steps{
                 sh 'mvn -s settings.xml test'
+            }
+        }
+        stage('CHECKSTYLE ANALYSIS'){
+            steps{
+                sh 'mvn -s settings.xml checkstyle.checkstyle'
             }
         }
     }
