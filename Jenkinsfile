@@ -68,11 +68,11 @@ pipeline{
                 nexusArtifactUploader{
                     nexusVersion:'nexus3',
                     procool:'http',
-                    nexusUrl:"${NEXUS_IP}:${NEXUS_PORT}"
-                    groupid:'QA'
-                    version:"${env.BUILD_ID}:${evn.BUILD_TIMESTAMP}"
-                    repository:"${RELEASE_REPO}"
-                    credentialsId:"${Nexus_LOGIN}"
+                    nexusUrl:"${NEXUS_IP}:${NEXUS_PORT}",
+                    groupid:'QA',
+                    version:"${env.BUILD_ID}:${evn.BUILD_TIMESTAMP}",
+                    repository:"${RELEASE_REPO}",
+                    credentialsId:"${Nexus_LOGIN}",
                     artifacts:{
                         {artifactsId:'vproapp',
                         classifier:'',
