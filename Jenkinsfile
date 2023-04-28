@@ -66,7 +66,7 @@ pipeline{
         stage('UPLOAD ARTIFACT TO NEXUS'){
             steps{
                 nexusArtifactUploader{
-                    nexusVersion:'nexus3',
+                    nexusVersion:'nexus3'
                     procol:'http',
                     nexusUrl:"${NEXUS_IP}:${NEXUS_PORT}",
                     groupId:'QA',
