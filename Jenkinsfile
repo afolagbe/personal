@@ -63,5 +63,24 @@ pipeline{
                 }
             }
         }
+        stage('UPLOAD ARTIFACT TO NEXUS'){
+            steps{
+                nexusArtifactUploader{
+                    nexusVersion:'nexus3',
+                    procool:'http',
+                    nexusUrl:"${NEXUS_IP}:${NEXUS_PORT}"
+                    groupid:'QA'
+                    version:"${env.BUILD_ID}:${evn.BUILD_TIMESTAMP}"
+                    repository:"${RELEASE_REPO}"
+                    credentialsId:"${Nexus_LOGIN}"
+                    artifact:{
+                        {artifactsId:'vproapp',
+                        classifier:'',
+                        file: 'target/vprofile-v2.war',
+                        type: 'war'}
+                    }
+                }
+            }
+        }
     }
 }
