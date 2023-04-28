@@ -34,6 +34,11 @@ pipeline{
                 sh 'mvn -s settings.xml test'
             }
         }
+        stage('UNIT TEST'){
+            steps{
+                sh 'mvn -s settings.xml test'
+            }
+        }
         stage ('SONAR ANALYSIS') {
             environment {
                 scannerHome = tool "${ SONAR_SCANNER}"
