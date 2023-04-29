@@ -11,7 +11,7 @@ pipeline{
         releaserepo = 'vpro-release'
         centralrepo = 'vpro-maven-central'
         nexusport = '8081'
-        nexuslogin = 'nuxuslogin'
+        nexuslogin = 'nexuslogin'
         nexuspassword = 'admin'
         SNAPREPO = 'vpro-snapshot'
         SONAR_SERVER = 'Sonarserver'
@@ -41,7 +41,7 @@ pipeline{
         }
         stage ('SONAR ANALYSIS') {
             environment {
-                scannerHome = tool "${ SONAR_SCANNER}"
+                scannerHome = tool "${SONAR_SCANNER}"
             }
             steps {
                 withSonarQubeEnv("${SONAR_SERVER}") {
@@ -68,11 +68,11 @@ pipeline{
                 nexusArtifactUploader(
                     nexusVersion: 'nexus3',
                     protocol: 'http',
-                    nexusUrl: "${44.192.8.162}:${8081}",
+                    nexusUrl: "${nexusip}:${nexusport}",
                     groupId: 'QA',
                     version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
-                    repository: "${RELEASE_REPO}",
-                    credentialsId: "${NEXUS_LOGIN}",
+                    repository: "${releaserepo}",
+                    credentialsId: "${nexuslogin}",
                     artifacts: [
                         [artifactId: 'vproapp',
                         classifier: '',
