@@ -105,12 +105,12 @@ pipeline{
             }
         }
     }
-    post{
-        always{
-            echo 'slack notification'
-            slackSend channel:'#preferskill',
-            color:COLOR_MAP[currentBuild.colorResult],
-            message:"*${currentBuild.currentResult}:*Job ${evn.JOB_NAME} build ${evn.BUILD_NUMBER}\n More info at ${BUILD_URL}"
+    post {
+        always {
+            echo 'slack notifications'
+            slackSend channel: '#project',
+            color: COLOR_MAP[currentBuild.currentResult],
+            message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} time ${env.BUILD_TIMESTAMP} \n More info at: ${BUILD_URL}"
         }
     }
 }
