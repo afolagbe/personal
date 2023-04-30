@@ -108,7 +108,7 @@ pipeline{
     post{
         always{
             echo 'slack notification'
-            slackSend channel:'preferskill'
+            slackSend channel:'preferskill',
             color:COLOR_MAP[currentBuild.colorResult],
             message:"'${currentBuild.currentResult}:*Job ${evn.JOB_NAME} build ${evn.BUILD_NUMBER}\n More info at ${BUILD_URL}"
         }
