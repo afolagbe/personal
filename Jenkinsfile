@@ -1,8 +1,8 @@
 pipeline{
     agent any
-    tools{
-        jdk 'JDK'
+    tools {
         maven 'Maven'
+        jdk 'JDK'
     }
     environment{
     SNAPREPO = 'vpro-snapshots'
@@ -22,16 +22,33 @@ pipeline{
             steps{
                 sh 'mvn -s settings.xml install -DskipTests'
             }
-            post{
-                success{
-                    echo 'now archiving'
-                    archiveArtifacts artifacts: '**/*.war', followSymlinks: false
+            post {
+                success {
+                    echo 'Now archiving'
+                    archiveArtifacts artifacts: '**/*.war'
                 }
             }
         }
-        stage('TEST'){
+        stage('UNIT TEST'){
             steps{
                 sh 'mvn -s settings.xml test'
+            }
+            post {
+                success {
+                    slackSend channel: '#devops-project',
+                    color: 'good',
+                    message: "UNIT TEST IS SUCCESS"
+                }
+                failure {
+                    slackSend channel: '#devops-project',
+                    color: 'danger',
+                    message: "UNIT TEST IS FAILED"
+                }
+            }
+        }
+        stage('INTEGRATION TEST'){
+            steps{
+                sh 'mvn -s settings.xml verify -DskipUnitTests'
             }
         }
         stage('CHECKSTYLE ANALYSIS'){
@@ -39,12 +56,12 @@ pipeline{
                 sh 'mvn -s settings.xml checkstyle:checkstyle'
             }
         }
-                stage ('SONAR ANALYSIS') {
+        stage ('SONAR ANALYSIS') {
             environment {
                 scannerHome = tool "${SONAR_SCANNER}"
             }
             steps {
-                withSonarQubeEnv("${SONARSERVER}") {
+                withSonarQubeEnv("${SONAR_SERVER}") {
                sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
                    -Dsonar.projectName=vprofile \
                    -Dsonar.projectVersion=1.0 \
@@ -54,11 +71,32 @@ pipeline{
                    -Dsonar.jacoco.reportsPath=target/jacoco.exec \
                    -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
             }
+            }
         }
-        stage{
+        stage('QUALITY GATE') {
             steps{
-                timeout{time:1 unit 'MUNITE'}
-                waitForQualityGate abortPipeline: true
+                timeout (time:1, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+        stage('UPLOAD ARTIFACT TO NEXUS'){
+            steps{
+                nexusArtifactUploader(
+                    nexusVersion: 'nexus3',
+                    protocol: 'http',
+                    nexusUrl: "${nexusip}:${nexusport}",
+                    groupId: 'QA',
+                    version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
+                    repository: "${RELEASE_REPO}",
+                    credentialsId: "${NEXUS_LOGIN}",
+                    artifacts: [
+                        [artifactId: 'vproapp',
+                        classifier: '',
+                        file: 'target/vprofile-v2.war',
+                        type: 'war']
+                    ]
+                )
             }
         }
     }
