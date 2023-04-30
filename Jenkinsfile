@@ -7,7 +7,7 @@ pipeline{
     environment{
         NEXUSUSER = 'admin'
         nexusgroup = 'vpro-maven-group'
-        nexusip = '44.204.226.97'
+        nexusip = '172.31.0.191'
         releaserepo = 'vpro-release'
         centralrepo = 'vpro-maven-central'
         nexusport = '8081'
@@ -53,7 +53,6 @@ pipeline{
                    -Dsonar.junit.reportsPath=target/surefire-reports/ \
                    -Dsonar.jacoco.reportsPath=target/jacoco.exec \
                    -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
-            }
             }
         }
         stage('QUALITY GATE'){
