@@ -55,6 +55,12 @@ pipeline{
             steps{
                 sh 'mvn -s settings.xml verify -DskipUnitTests'
             }
+            post{
+                always{
+                    slackSend channel: '#project'
+                    message:"Job is started"
+                }
+            }
         }
         stage('CHECKSTYLE ANALYSIS'){
             steps{
