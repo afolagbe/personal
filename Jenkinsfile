@@ -58,7 +58,7 @@ pipeline{
             post{
                 always{
                     slackSend channel: '#project'
-                    message:"Job is started"
+                message:"Job is started"
                 }
             }
         }
