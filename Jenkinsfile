@@ -7,7 +7,7 @@ pipeline{
     environment{
         NEXUSUSER = 'admin'
         nexusgroup = 'vpro-maven-group'
-        nexusip = '172.31.0.191'
+        nexusip = '44.204.226.97'
         releaserepo = 'vpro-release'
         centralrepo = 'vpro-maven-central'
         nexusport = '8081'
