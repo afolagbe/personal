@@ -7,7 +7,7 @@ pipeline{
     stages{
         stage('BUILD'){
             steps{
-                sh 'mvn -s settings.xml install -DeskipTests'
+                sh 'mvn -sa settings.xml install -DeskipTests'
             }
         }
     }
