@@ -10,5 +10,10 @@ pipeline{
                 sh 'mvn install -DeskipTests'
             }
         }
+        stage ('TEST THE APPLICATION') {
+            steps {
+                sh 'mvn tests'
+            }
+        }
     }
 }
