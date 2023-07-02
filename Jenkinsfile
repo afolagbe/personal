@@ -12,7 +12,7 @@ pipeline{
         }
         stage ('TEST THE APPLICATION') {
             steps {
-                sh 'mvn tests'
+                sh 'mvn test'
             }
         }
     }
