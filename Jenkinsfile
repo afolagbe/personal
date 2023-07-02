@@ -17,7 +17,7 @@ pipeline{
         }
         stage ('UNIT TEST') {
             steps {
-                sh 'mvn -DskipUnitTest'
+                sh 'mvn install -DeskipUnitTest'
             }
         }
     }
