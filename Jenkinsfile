@@ -4,9 +4,11 @@ pipeline{
         jdk 'JDK'
         maven "Maven"
     }
-    stages ('BUILD THE APPLICATION') {
-        steps {
-            sh 'mvn install DskipTests'
+    stages {
+        stage ('BUILD THE APPLICATION'){
+            steps {
+                sh 'mvn install -DeskipTests'
+            }
         }
     }
 }
