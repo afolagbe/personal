@@ -15,5 +15,10 @@ pipeline{
                 sh 'mvn test'
             }
         }
+        stage ('UNIT TEST') {
+            steps {
+                sh 'mvn -DskipUnitTest'
+            }
+        }
     }
 }
