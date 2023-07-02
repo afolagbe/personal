@@ -1,4 +1,4 @@
-Jenkins script
+'Jenkins script'
 pipeline{
     agent any
     tools {
