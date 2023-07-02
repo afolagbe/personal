@@ -4,10 +4,16 @@ pipeline{
         maven 'maven'
         jdk 'JDK'
     }
+    environment{
+        SNAPREPO = 'vpro-snapshots'
+        NEXUSUSER = 'admim'
+        NEXUSPASSWORD = 'admin'
+
+    }
     stages {
         stage(BUILD) {
             steps{
-                sh 'mvn -s settings.xml install -DeskipTests'
+                sh 'mvn install -DeskipTests'
             }
         }
     }
