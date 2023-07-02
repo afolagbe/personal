@@ -20,5 +20,10 @@ pipeline{
                 sh 'mvn install -DeskipUnitTest'
             }
         }
+        stage ('INTEGRATION TEST') {
+            steps {
+                sh 'mvn install -DeskipUnit Test'
+            }
+        }
     }
 }
