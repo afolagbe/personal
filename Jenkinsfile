@@ -2,27 +2,17 @@ pipeline{
     agent any
     tools {
         jdk 'JDK'
-        maven "maven"
+        maven 'Maven'
     }
     stages {
-        stage ('BUILD THE APPLICATION'){
+        stage ('PULL THE APPLICATION FROM GITHUB') {
             steps {
-                sh 'mvn install -DeskipTests'
+                git branch: 'ci-jenkins', url: 'https://github.com/afolagbe/personal.git'
             }
         }
-        stage ('TEST THE APPLICATION') {
+        stage ('BUILD THE APPLICATION') {
             steps {
-                sh 'mvn test'
-            }
-        }
-        stage ('UNIT TEST') {
-            steps {
-                sh 'mvn install -DeskipUnitTest'
-            }
-        }
-        stage ('INTEGRATION TEST') {
-            steps {
-                sh 'mvn install -DeskipUnit Test'
+                sh 'mvn install -DeskipTest'
             }
         }
     }
