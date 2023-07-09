@@ -34,5 +34,11 @@ pipeline{
                 sh 'mvn checkstyle:checkstyle'
             }
         }
+        stage ('Sonar Analysis') {
+            steps {
+                sh 'mvn clean package'
+                sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=Project1 -Dsonar.host.url=http://54.234.2.29:9000 -Dsonar.login=sqp_c8573d48a96e4a483c8bef9d8ab33a927fcfd05e'
+            }
+        }
     }
 }
