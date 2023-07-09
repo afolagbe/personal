@@ -34,9 +34,19 @@ pipeline{
                 sh 'mvn checkstyle:checkstyle'
             }
         }
-        stage ('Sonar Analysis') {
+        stage ('SONAR ANALYSIS') {
+            environment {
+                scannerHome = tool "${SONAR_SCANNER}"
+            }
             steps {
-                sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=Project1 -Dsonar.host.url=http://54.234.2.29:9000 -Dsonar.login=sqp_c8573d48a96e4a483c8bef9d8ab33a927fcfd05e'    
+              sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Project1 \
+                   -Dsonar.projectName=vprofileProject1 \
+                   -Dsonar.projectVersion=1.0 \
+                   -Dsonar.sources=src/ \
+                   -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/ \
+                   -Dsonar.junit.reportsPath=target/surefire-reports/ \
+                   -Dsonar.jacoco.reportsPath=target/jacoco.exec \
+                   -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''   
             }
         }
     }
