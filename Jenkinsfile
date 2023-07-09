@@ -31,12 +31,12 @@ pipeline{
         }
         stage ('CHECKSTYLE ANALYSIS') {
             steps {
-                sh 'mvn checkstyle:checkstyle'
+                sh 'mvn -s settings.xml checkstyle:checkstyl'
             }
         }
         stage ('SONAR ANALYSIS') {
             environment {
-                scannerHome = tool "${SONAR_SCANNER}"
+                withSonarQubeEnv("${SONAR_SCANNER}")
             }
             steps {
               sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Project1 \
