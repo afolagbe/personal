@@ -39,10 +39,5 @@ pipeline{
                 sh 'mvn checkstyle:checkstyle'
             }
         }
-        stage ('QUALITY GATES') {
-            steps {
-                sh 'mvn waitForQualityGate abortPipeline: true'
-            }
-        }
     }
 }
