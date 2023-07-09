@@ -4,6 +4,10 @@ pipeline{
         jdk 'JDK'
         maven 'maven'
     }
+    environment {
+        SONAR_SERVER = 'SonarQube sever'
+        SONAR_SCANNER = 'Sonarscan'
+    }
     stages {
         stage ('PULL THE APPLICATION FROM GITHUB') {
             steps {
@@ -23,6 +27,11 @@ pipeline{
         stage ('UNIT TEST') {
             steps {
                 sh 'mvn test'
+            }
+        }
+        stage ('CHECKSTYLE ANALYSIS') {
+            steps {
+                sh 'mvn checkstyle:checkstyle'
             }
         }
     }
