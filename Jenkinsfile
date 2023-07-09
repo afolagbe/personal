@@ -39,7 +39,7 @@ pipeline{
                 scannerHome = tool "${SONAR_SCANNER}"
             }
             steps {
-              sh '''${scannerHome}/bin/Sonarscan -Dsonar.projectKey=Project1 \
+              sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Project1 \
                    -Dsonar.projectName=Project1 \
                    -Dsonar.projectVersion=1.0 \
                    -Dsonar.sources=src/ \
