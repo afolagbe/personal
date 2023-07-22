@@ -1,8 +1,3 @@
-def COLOR_MAP = [
-    'SUCCESS' : 'good',
-    'FAILURE' : 'danger'
-]
-
 pipeline{
     agent any
     tools {
@@ -43,14 +38,6 @@ pipeline{
             steps {
                 sh 'mvn checkstyle:checkstyle'
             }
-        }
-    }
-    post {
-        always{
-            echo 'slack notifications'
-            slackSend channel: '#project',
-            color: COLOR_MAP[currentBuild.currentResult],
-            message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} time ${env.BUILD_TIMESTAMP} \n More info at: ${BUILD_URL}"
         }
     }
 }
