@@ -50,7 +50,7 @@ pipeline{
             echo 'slack notifications'
             slankSend channel: '#ci-project'
             color: COLOR_MAP[currentBuild.currentResult],
-            message: "*${currentBuild.currentResult}:*job ${evn.JOB_NAME} build ${evn.Build_name} time ${evn.BUILD_TIMESTAMP} \n More info at: ${BUILD URL}"
+            message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} time ${env.BUILD_TIMESTAMP} \n More info at: ${BUILD_URL}"
         }
     }
 }
