@@ -1,3 +1,4 @@
+
 pipeline{
     agent any
     tools {
@@ -38,6 +39,14 @@ pipeline{
             steps {
                 sh 'mvn checkstyle:checkstyle'
             }
+        }
+    }
+    post {
+        aways{
+            echo 'slack notifications'
+            slankSend channel: '#ci-project'
+            color: COLOR_MAP[currentBuild.currentResult],
+            message: "*${currentBuild.currentResult}:*job ${evn.JOB_NAME} build ${evn.Build_name} time ${evn.BUILD_TIMESTAMP} \n More info at: ${BUILD URL}"
         }
     }
 }
