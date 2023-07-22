@@ -49,7 +49,7 @@ pipeline{
         always{
             echo 'slack notification'
             slackSend channel: '#project',
-            color:COLOR_MAP{currentBuild.currentResult},
+            color:COLOR_MAP[currentBuild.currentResult],
             message:"*${currentBuild.currentResult}:*job ${evn.JOB_NAME} build ${evn.BUILD_NUMBER}\n More info at ${BUILD_URL}"
         }
     }
