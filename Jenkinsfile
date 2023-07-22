@@ -1,7 +1,8 @@
-def COLOR_MAP =[
+def COLOR_MAP = [
     'SUCCESS' : 'good'
     'FAILURE' : 'danger'
 ]
+
 pipeline{
     agent any
     tools {
