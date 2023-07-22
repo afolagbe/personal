@@ -46,7 +46,7 @@ pipeline{
         }
     }
     post {
-        aways{
+        always{
             echo 'slack notifications'
             slankSend channel: '#ci-project',
             color: COLOR_MAP[currentBuild.currentResult],
