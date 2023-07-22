@@ -1,6 +1,6 @@
 def COLOR_MAP = [
-    'SUCCESS': 'good',
-    'FAILURE': 'danger'
+    'SUCCESS' : 'good',
+    'FAILURE' : 'danger'
 ]
 
 pipeline{
@@ -49,8 +49,8 @@ pipeline{
         always{
             echo 'slack notifications'
             slackSend channel: '#project',
-            color:COLOR_MAP[currentBuild.currentResult],
-            message:"*${currentBuild.currentResult}:*job3 ${evn.JOB_NAME} build ${evn.BUILD_NUMBER}\n More info at ${BUILD_URL}"
+            color: COLOR_MAP[currentBuild.currentResult],
+            message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} time ${env.BUILD_TIMESTAMP} \n More info at: ${BUILD_URL}"
         }
     }
 }
