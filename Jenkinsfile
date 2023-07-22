@@ -26,7 +26,19 @@ pipeline{
         }
         stage ('TEST') {
             steps {
-                sh ' test'
+                sh ' mvn test'
+            }
+            post{
+                success {
+                    slackSend channel: '#ci-project',
+                    color:'good',
+                    message: "TEST IS SUCCESS"
+                }
+                failure {
+                    slackSend channel: '#ci-project',
+                    color: 'danger',
+                    message: "TEST IS FAILED"
+                }
             }
         }
         stage ('UNIT TEST') {
