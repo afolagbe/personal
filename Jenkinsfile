@@ -31,7 +31,7 @@ pipeline{
         }
         stage ('UNIT TEST') {
             steps {
-                sh ' test'
+                sh ' mvn test'
             }
         }
         stage ('INTEGRATION TEST') {
@@ -48,7 +48,7 @@ pipeline{
     post {
         always{
             echo 'slack notifications'
-            slackSend channel: 'preferskill-workspace',
+            slackSend channel: 'project',
             color:COLOR_MAP[currentBuild.currentResult],
             message:"*${currentBuild.currentResult}:*job ${evn.JOB_NAME} build ${evn.BUILD_NUMBER}\n More info at ${BUILD_URL}"
         }
