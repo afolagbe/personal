@@ -48,12 +48,12 @@ pipeline{
             post{
                 success {
                     slackSend channel: '#ci-project'
-                    color: 'good',
-                    message: "UUNIT TEST IS SUCCESSFUL"
+                    color:'good',
+                    message: "UNIT TEST IS SUCCESSFUL"
                 }
                 failure: {
                     slackSend channel: '#ci-project'
-                    color: 'danger',
+                    color:'danger',
                     message: "UNIT TEST IS FAILED"
                 }
             }
