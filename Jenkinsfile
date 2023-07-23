@@ -51,7 +51,7 @@ pipeline{
                     color:'good',
                     message: "UNIT TEST IS SUCCESSFUL"
                 }
-                failure: {
+                failure {
                     slackSend channel: '#ci-project',
                     color:'danger',
                     message: "UNIT TEST IS FAILED"
