@@ -19,6 +19,18 @@ pipeline{
                 git branch: 'ci-jenkins', url: 'https://github.com/afolagbe/personal.git'
             }
         }
+        stage ('SLACK NOTIFICATION TO THE TEAM') {
+            steps {
+                echo 'Pipeline started'
+            }
+            post {
+                always{
+                    slackSend channel: '#ci-project',
+                    color: 'warning'
+                    message: 'build is started job name'
+                }
+            }
+        }
         stage ('BUILD THE APPLICATION') {
             steps {
                 sh 'mvn install -DeskipTest'
@@ -74,7 +86,7 @@ pipeline{
             echo 'slack notifications'
             slackSend channel: '#ci-project',
             color: COLOR_MAP[currentBuild.currentResult],
-            message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} time ${env.BUILD_TIMESTAMP} \n More info at: ${BUILD_URL}"
+            message: "*${currentBuild.currentResult}:* Job name ${env.JOB_NAME} build ${env.BUILD_NUMBER} time ${env.BUILD_TIMESTAMP} \n More info at: ${BUILD_URL}"
         }
     }
 }
