@@ -27,7 +27,7 @@ pipeline{
                 always{
                     slackSend channel: '#ci-project',
                     color: 'warning'
-                    message: 'build is started job name'
+                    message: '*Job name ${env.JOB_NAME} build ${env.BUILD_NUMBER} time ${env.BUILD_TIMESTAMP} \n More info at: ${BUILD_URL}"
                 }
             }
         }
