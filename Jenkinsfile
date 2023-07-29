@@ -13,10 +13,10 @@ pipeline{
         NEXUSUSER = 'admin'
         nexuspassword = 'admin'
         releaserepo = 'vpro-release'
-        centralrepo = 'vpro-mavan-central'
-        nexusip = '172.31.10.98'
+        centralrepo = 'Vpro-mavan-central'
+        nexusip = '172.31.30.167'
         nexusport = '8081'
-        nexusgroup = 'vpro-maven-group'
+        nexusgroup = 'Vpro-maven-group'
         nexuslogin = 'nexuslogin'
         SONAR_SCANNER = 'SonarQube Scanner'
         SONAR_SERVER = 'SonarQube Server'
@@ -67,7 +67,7 @@ pipeline{
         stage ('UPLOAD ARTIFACT TO NEXUS') {
             steps {
                 nexusArtifactUploader {
-                    nexusVersion: 'nexus2',
+                    nexusVersion: 'nexus3',
                     protocol: 'http',
                     nexusUrl: "${nexusip}:${nexusport}",
                     groupId: 'SALES',
