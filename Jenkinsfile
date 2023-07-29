@@ -34,7 +34,7 @@ pipeline{
             post {
                 success{
                     echo 'New achiving'
-                    archiveArtifacts artifacts: '**/*.war',
+                    archiveArtifacts artifacts: '**/*.war'
                 }
             }
         }
