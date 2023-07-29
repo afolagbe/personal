@@ -31,6 +31,12 @@ pipeline{
             steps {
                 sh 'mvn install -DeskipTest'
             }
+            post {
+                success{
+                    echo 'New achiving'
+                    archiveArtifacts artifacts: '**/*.war',
+                }
+            }
         }
         stage ('TEST') {
             steps {
