@@ -14,7 +14,7 @@ pipeline{
         nexuspassword = 'admin'
         releaserepo = 'vpro-release'
         centralrepo = 'Vpro-mavan-central'
-        nexusip = '172.31.30.167'
+        nexusip = '172.31.30.16'
         nexusport = '8081'
         nexusgroup = 'Vpro-maven-group'
         nexuslogin = 'nexuslogin'
