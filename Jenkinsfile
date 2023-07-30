@@ -9,12 +9,12 @@ pipeline{
         maven 'maven'
     }
     environment {
-        SNAPREPO = 'vpro-snapshots'
+        SNAPREPO = 'Vpro-snapshots'
         NEXUSUSER = 'admin'
         nexuspassword = 'admin'
         releaserepo = 'vpro-release'
         centralrepo = 'Vpro-mavan-central'
-        nexusip = '172.31.30.16'
+        nexusip = '172.31.30.167'
         nexusport = '8081'
         nexusgroup = 'Vpro-maven-group'
         nexuslogin = 'nexuslogin'
@@ -29,7 +29,7 @@ pipeline{
         }
         stage ('BUILD THE APPLICATION') {
             steps {
-                sh 'mvn install -DeskipTest'
+                sh 'mvn -s settings.xml install -DeskipTest'
             }
             post {
                 success{
